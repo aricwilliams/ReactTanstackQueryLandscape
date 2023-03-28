@@ -28,6 +28,30 @@ export default function AddIssue() {
       },
     }
   );
+  
+
+  const addAnother = useMutation(
+    (otherBody) =>
+      fetch("https://localhost:7185/api/Products/HomePageControllerCreateAsync/testingwitharic/monday/345/done/almost", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(otherBody),
+      }).then((res) => res.json()),
+    {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries(["issues"], { exact: true });
+        queryClient.setQueryData(["issues", data.number.toString()], data);
+        navigate(`/issue/${data.number}`);      },
+    }
+  );
+
+  const [ cardTitle, setcardTitle ] = React.useState("");
+  const [ dayRange, setdayRange ] = React.useState("");
+  const [ cardTotal, setcardTotal ] = React.useState("");
+  const [ cardTotalDetail, setcardTotalDetail ] = React.useState("");
+  const [ cardTotalStatus, setcardTotalStatus ] = React.useState("");
+
+
   return (
     
     <main id="main" className="main section dashboard">
@@ -49,30 +73,53 @@ export default function AddIssue() {
         <div className="card">
           <div className="card-body card-enter-customer">
     <div className="add-issue">
-      <CustomerForm/>
+      {/* <CustomerForm/> */}
       <form
+      method="POST"
         onSubmit={(event) => {
           event.preventDefault();
-          if (addIssue.isLoading) return;
-          addIssue.mutate({
-            comment: event.target.comment.value,
-            title: event.target.title.value,
-          });
+          const DataToSubmit ={
+            cardTitle,
+            dayRange,
+            cardTotal,
+            cardTotalDetail,
+            cardTotalStatus
+          }
+          // if (addAnother.isLoading) return;
+          // addAnother.mutate({
+          //   comment: event.target.comment.value,
+          //   title: event.target.title.value,
+          // });
+          fetch(`https://localhost:7185/api/Products/HomePageControllerCreateAsync/${cardTitle}/${dayRange}/${cardTotal}/${cardTotalDetail}/${cardTotalStatus}`, {
+            method: "POST",
+            headers: { 
+              "Content-Type": "application/json",
+              "Accept": "application/json" 
+            },
+            body: JSON.stringify(DataToSubmit),
+          }).then((res) => res.json())
         }}
       >
        
-        <label className="htmlForm-label" htmlFor="title"><h6>Title</h6></label>
-        <input type="text" id="title" placeholder="Title" name="title" />
-        <label className="htmlForm-control" htmlFor="comment"><h6>Comment</h6></label>
-        <textarea placeholder="Comment" id="comment" name="comment" />
+        <label className="htmlForm-label" htmlFor="title"><h6>Card Title</h6></label>
+        <input type="text" id="title" placeholder="Title" value={cardTitle} name="title" onChange={(event)=> setcardTitle(event.target.value)}/>
+        <label className="htmlForm-label" htmlFor="title"><h6>Day Range</h6></label>
+        <input type="text" id="title" placeholder="Title" value={dayRange} name="title" onChange={(event)=> setdayRange(event.target.value)}/>
+        <label className="htmlForm-label" htmlFor="title"><h6>Card Total</h6></label>
+        <input type="text" id="title" placeholder="Title" value={cardTotal} name="title" onChange={(event)=> setcardTotal(event.target.value)}/>
+        <label className="htmlForm-label" htmlFor="title"><h6>Card Total Detail</h6></label>
+        <input type="text" id="title" placeholder="Title" value={cardTotalDetail} name="title" onChange={(event)=> setcardTotalDetail(event.target.value)}/>
+        <label className="htmlForm-label" htmlFor="title"><h6>Card Total Status</h6></label>
+        <input type="text" id="title" placeholder="Title" value={cardTotalStatus} name="title" onChange={(event)=> setcardTotalStatus(event.target.value)}/>
+       
         <div className="text-center">
                     <div className="row mx-auto">
                       <button
                         type="submit"
                         className="btn btn-primary col-5 mx-1"
-                        disabled={addIssue.isLoading}
+                        //disabled={addAnother.isLoading}
                       >
-{addIssue.isLoading ? "Adding Issue..." : "Add Issue"}                      </button>
+{addAnother.isLoading ? "Adding Issue..." : "Add Issue"}                      </button>
                       <button
                         type="reset"
                         className="btn btn-secondary col-5 mx-1"

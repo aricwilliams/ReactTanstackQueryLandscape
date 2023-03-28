@@ -20,7 +20,7 @@ import news2 from "../assets/img/news-2.jpg";
 import news3 from "../assets/img/news-3.jpg";
 import news4 from "../assets/img/news-4.jpg";
 import news5 from "../assets/img/news-5.jpg";
-import IssuesList from "../components/IssuesList";
+import IssuesList from "./CustomerGridView";
 import CustomerForm from "../components/CustomerForm";
 import { StatusSelect } from "../components/StatusSelect";
 import { Link } from "react-router-dom";
@@ -28,11 +28,13 @@ import { Link } from "react-router-dom";
 import notFound from "../assets/img/not-found.svg";
 import LabelList from "../components/LabelList";
 import { useState } from "react";
+import CustomerGridView from "./CustomerGridView";
 
 export default function CustomerViewFunc() {
   const [labels, setLabels] = useState([]);
   const [status, setStatus] = useState("");
   const [pageNum, setPageNum] = useState(1);
+  const [customers, setCustomers] = useState("");
 
   return (
     <main id="main" className="main">
@@ -55,12 +57,13 @@ export default function CustomerViewFunc() {
           <div className="col-lg-8">
             <div className="row">
               <hr />
-              <IssuesList
+              {/* <IssuesList
                 labels={labels}
                 status={status}
                 pageNum={pageNum}
                 setPageNum={setPageNum}
-              />
+              /> */}
+              <CustomerGridView customers={customers} />
             </div>
           </div>
 

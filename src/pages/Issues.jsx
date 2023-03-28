@@ -1,4 +1,4 @@
-import IssuesList from "../components/IssuesList";
+import IssuesList from "../components/CustomerGridView";
 import LabelList from "../components/LabelList";
 import CustomerForm from "../components/CustomerForm";
 import { useState } from "react";

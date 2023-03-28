@@ -21,7 +21,7 @@ import news3 from "../assets/img/news-3.jpg";
 import news4 from "../assets/img/news-4.jpg";
 import news5 from "../assets/img/news-5.jpg";
 import Issues from "./Issues";
-import IssuesList from "../components/IssuesList";
+import IssuesList from "../components/CustomerGridView";
 import CustomerForm from "../components/CustomerForm";
 import { StatusSelect } from "../components/StatusSelect";
 import { Link } from "react-router-dom";

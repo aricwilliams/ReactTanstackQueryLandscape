@@ -21,23 +21,23 @@ export default function UserForm() {
   return (
     <form  noValidate autoComplete="off">
       <TextField
-        id="name"
-        label="Name"
+        id="cardTitle"
+        label="Card Title"
         margin="normal"
       />
       <TextField
-        id="address"
-        label="Address"
+        id="dayRange"
+        label="Day Range"
         margin="normal"
       />
       <TextField
-        id="email"
-        label="Email"
+        id="cardTotal"
+        label="Card Total"
         margin="normal"
       />
       <TextField
-        id="phone"
-        label="Phone Number"
+        id="cardTotalDetailcardTotalDetail"
+        label="Card Total Detail"
         margin="normal"
       />
     </form>

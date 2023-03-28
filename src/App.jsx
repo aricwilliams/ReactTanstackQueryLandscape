@@ -6,6 +6,8 @@ import FetchingIndicator from "./components/FetchingIndicator";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
 import AddCustomer from "./components/AddCustomer";
+import TodoList from "./components/ToDo/TodoList";
+
 import {Helmet} from "react-helmet";
 import CustomerViewFunc from "./components/CustomerView";
 
@@ -36,6 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/addCustomer" element={<AddCustomer />} />
+        <Route path="/editToDo" element={<TodoList />} />
         <Route path="/customerView" element={<CustomerViewFunc />} />
         <Route path="/add" element={<AddIssue />} />
         <Route path="/issue/:number" element={<Issue />} />

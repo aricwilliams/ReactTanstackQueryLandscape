@@ -430,3 +430,38 @@ a {
     background-color: #F6F9FF!important;
     color: black;
   }
+
+  /* /////customer//// */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+  }
+  
+  th.header-col {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  tr.data-row {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  tr.data-row:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  @media screen and (max-width: 768px) {
+    table {
+      font-size: 14px;
+    }
+    
+    th.header-col {
+      font-size: 16px;
+    }
+    
+    tr.data-row {
+      font-size: 16px;
+    }
+  }
+  
